@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Launching a complete website and branding refresh</title>
+<style>
+  :root{
+    --paper:#f6f4ee; --panel:#fffefb; --ink:#15201b; --muted:#5f6660; --faint:#8b908a;
+    --green:#0e4733; --green-2:#1a6b4f; --green-tint:#e6efe9;
+    --slate:#5b7080; --slate-tint:#e7ebee; --rule:#e1ddd2; --code-bg:#eceadf;
+    --serif:"Iowan Old Style","Charter","Hoefler Text",Georgia,"Times New Roman",serif;
+    --sans:"Avenir Next","Avenir","Helvetica Neue",-apple-system,BlinkMacSystemFont,sans-serif;
+    --mono:"SF Mono",ui-monospace,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans);
+    line-height:1.6; font-size:17px;}
+  .wrap{max-width:760px; margin:0 auto; padding:0 1.4rem 5rem;}
+  .top-rule{height:5px; background:linear-gradient(90deg,var(--green) 0 60%,var(--green-2));}
+
+  /* masthead */
+  header{padding:3.4rem 0 2.2rem; border-bottom:1px solid var(--rule);}
+  .eyebrow{font-family:var(--mono); font-size:.72rem; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--green-2); margin:0 0 1.1rem;}
+  h1{font-family:var(--serif); font-weight:600; font-size:clamp(2.1rem,5.6vw,3.1rem); line-height:1.07;
+    letter-spacing:-.01em; margin:0 0 1rem; color:var(--green);}
+  .dek{font-family:var(--serif); font-size:clamp(1.1rem,2.4vw,1.35rem); font-style:italic;
+    color:var(--muted); margin:0 0 1.5rem; line-height:1.4; max-width:46ch;}
+  .meta{display:flex; flex-wrap:wrap; gap:.5rem;}
+  .meta span{font-size:.82rem; padding:.28rem .7rem; border-radius:999px; border:1px solid var(--rule);
+    background:var(--panel); color:var(--muted);}
+
+  /* sections */
+  section{padding:2.4rem 0 .4rem; border-bottom:1px solid var(--rule);}
+  section:last-of-type{border-bottom:0;}
+  h2{font-family:var(--serif); font-weight:600; font-size:1.5rem; color:var(--ink); margin:0 0 .9rem; line-height:1.2;}
+  p{margin:.75rem 0;} strong{font-weight:600;}
+  .lede{font-size:1.05rem;}
+  code{font-family:var(--mono); font-size:.84em; background:var(--code-bg); padding:.05em .35em; border-radius:4px;}
+  .timing{font-size:.92rem; color:var(--muted); margin-top:1.1rem;}
+
+  /* before / after grid */
+  .ba{margin:.4rem 0 .4rem; border:1px solid var(--rule); border-radius:10px; overflow:hidden;}
+  .ba-legend, .ba-row{display:grid; grid-template-columns:8.5rem 1fr 1.5rem 1fr; gap:.9rem; align-items:center;}
+  .ba-legend{padding:.7rem 1rem; background:var(--green); color:#eaf3ee;}
+  .ba-legend .l{font-family:var(--mono); font-size:.7rem; letter-spacing:.1em; text-transform:uppercase;}
+  .ba-legend .l.after{color:#cde7d8;}
+  .ba-row{padding:.85rem 1rem; border-top:1px solid var(--rule);}
+  .ba-row:nth-child(odd){background:var(--panel);}
+  .dim{font-family:var(--mono); font-size:.74rem; text-transform:uppercase; letter-spacing:.06em; color:var(--muted);}
+  .before{background:var(--slate-tint); color:#3c4a55; border-radius:6px; padding:.5rem .65rem; font-size:.9rem; line-height:1.35;}
+  .after{background:var(--green-tint); color:var(--green); border-radius:6px; padding:.5rem .65rem; font-size:.9rem; line-height:1.35; font-weight:500;}
+  .arrow{text-align:center; color:var(--green-2); font-size:1.2rem;}
+
+  /* research cards */
+  .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:.9rem; margin:1rem 0 .5rem;}
+  .card{background:var(--panel); border:1px solid var(--rule); border-left:3px solid var(--green-2);
+    border-radius:8px; padding:1rem;}
+  .card .t{font-family:var(--mono); font-size:.72rem; text-transform:uppercase; letter-spacing:.08em;
+    color:var(--green-2); margin-bottom:.45rem;}
+  .card .b{font-size:.92rem; line-height:1.45;}
+
+  /* callouts */
+  .callout{border-radius:10px; padding:1.1rem 1.2rem; margin:1.1rem 0; background:var(--green-tint);
+    border-left:4px solid var(--green-2);}
+  .callout .h{font-family:var(--mono); font-size:.72rem; text-transform:uppercase; letter-spacing:.1em;
+    color:var(--green-2); margin-bottom:.4rem;}
+  .callout p{margin:.2rem 0 0; font-size:.96rem;}
+
+  .summary{font-family:var(--serif); font-style:italic; font-size:1.15rem; line-height:1.5; color:var(--ink);
+    border-left:3px solid var(--green); padding-left:1.1rem; margin:1.2rem 0 0;}
+
+  /* motion */
+  @keyframes fadeUp{from{opacity:0; transform:translateY(12px)} to{opacity:1; transform:none}}
+  header, section{animation:fadeUp .5s both;}
+  section:nth-of-type(1){animation-delay:.05s} section:nth-of-type(2){animation-delay:.1s}
+  section:nth-of-type(3){animation-delay:.15s} section:nth-of-type(4){animation-delay:.2s}
+
+  @media (max-width:700px){
+    body{font-size:16px;}
+    .cards{grid-template-columns:1fr;}
+    .ba-legend{display:none;}
+    .ba-row{grid-template-columns:1fr; gap:.4rem; padding:1rem;}
+    .ba-row .arrow{transform:rotate(90deg);}
+    .dim{color:var(--green-2);}
+    .before::before{content:"Before · "; font-weight:600; color:var(--slate);}
+    .after::before{content:"After · "; font-weight:600; color:var(--green-2);}
+  }
+  @media print{ body{background:#fff; font-size:11pt;} *{animation:none !important;} .top-rule{background:var(--green);} section,.ba,.card{break-inside:avoid;} }
+  @media (prefers-reduced-motion:reduce){ *{animation:none !important;} }
+</style>
+</head>
+<body>
+<div class="top-rule"></div>
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">Clarity Pediatrics · Growth Engineer — work sample</p>
+    <h1>Launching a complete website and branding refresh</h1>
+    <p class="dek">How I rebuilt Atomic Invest's website from positioning to lead funnel.</p>
+    <div class="meta">
+      <span>B2B fintech infrastructure</span>
+      <span>Solo Product Marketing lead · Jul 2024</span>
+      <span>Rebrand shipped · early 2025</span>
+    </div>
+  </header>
+
+  <section>
+    <h2>The website was a growth problem</h2>
+    <p class="lede">Atomic Invest sells embedded investing, savings, and brokerage infrastructure that fintechs, banks, and consumer apps build into their own products. When I joined as the solo Product Marketing lead, the company was years in but still running its original Series-A-era site.</p>
+    <p>The primary CTA, <strong>"Request access,"</strong> implied a gated, invite-only product rather than an open sales conversation. The form behind it lived on a third-party tool that added a vendor dependency and a context-switch mid-funnel. The positioning named an internal product line, not the fintechs and financial institutions Atomic was actually selling to. The site wasn't doing its job.</p>
+  </section>
+
+  <section>
+    <h2>What I shipped</h2>
+    <p>I treated the website as Atomic's primary acquisition surface and shipped a complete rebrand — positioning, copy, information architecture, visual identity, and the lead funnel.</p>
+    <div class="ba">
+      <div class="ba-legend"><span class="l">Dimension</span><span class="l">Before</span><span></span><span class="l after">After</span></div>
+      <div class="ba-row"><span class="dim">Primary CTA</span><span class="before">"Request access" (gated, blue)</span><span class="arrow">&rarr;</span><span class="after">"Talk to us" + "Partner Login" (dark-green)</span></div>
+      <div class="ba-row"><span class="dim">Positioning</span><span class="before">"Launch Investing / as a value add…"</span><span class="arrow">&rarr;</span><span class="after">"The easy way to offer investing &amp; savings — one platform for fintechs &amp; financial institutions"</span></div>
+      <div class="ba-row"><span class="dim">Visual identity</span><span class="before">Light theme, multi-color "ATOMIC"</span><span class="arrow">&rarr;</span><span class="after">Monochrome dark-green enterprise identity</span></div>
+      <div class="ba-row"><span class="dim">Architecture</span><span class="before">Sparse nav</span><span class="arrow">&rarr;</span><span class="after">Solutions / Company / Legal + named segments (FIs · consumer fintechs · B2B fintechs)</span></div>
+      <div class="ba-row"><span class="dim">Credibility</span><span class="before">None on homepage</span><span class="arrow">&rarr;</span><span class="after">SEC RIA + FINRA broker-dealer · BNY Pershing custody · SOC-2 Type II</span></div>
+      <div class="ba-row"><span class="dim">Lead capture</span><span class="before">third-party <code>/access/</code></span><span class="arrow">&rarr;</span><span class="after">native 3-step qualification flow at <code>/form</code></span></div>
+    </div>
+    <div class="callout">
+      <div class="h">A measurement decision, not a design one</div>
+      <p>The new <code>/form</code> replaced the third-party tool and added a "how did you hear about us?" field — so the form didn't just capture leads, it tracked which channels were driving qualified inbound. The funnel was built to be measured.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>How I set the direction</h2>
+    <p>I didn't start with pixels. I treated it as a strategy-and-clarity problem and started with three inputs:</p>
+    <div class="cards">
+      <div class="card"><div class="t">Competitor benchmarking</div><div class="b">Studied how other B2B fintech-infrastructure companies positioned themselves — not to copy the category, but to find where Atomic could be clearer and more differentiated.</div></div>
+      <div class="card"><div class="t">Stakeholder interviews</div><div class="b">Talked with product, sales, and partnerships about how they described Atomic's value and who they sold to. This surfaced the gaps between the internal story and the external site.</div></div>
+      <div class="card"><div class="t">CEO strategy session</div><div class="b">An hour-plus working session to lock the brand direction, the ideal customer, and the jobs the site had to do — the foundation for confident calls on positioning and copy.</div></div>
+    </div>
+    <p>From those inputs I built the information architecture, wrote the copy, and worked with design to execute the identity and UX — all aimed at one thing: cutting interpretive friction, so the right prospect understands what Atomic does, who it's for, and why to engage, as fast as possible.</p>
+  </section>
+
+  <section>
+    <h2>What I can say about results</h2>
+    <p>The clearest metrics live in Google Analytics and the CRM — sessions, homepage CTA click-through, form start and completion, qualified inbound, and lead-source mix.</p>
+    <div class="callout">
+      <div class="h">First-hand, directional</div>
+      <p>While I had access to GA and the CRM, the funnel improved after the rebrand — form starts, completions, and qualified inbound all moved up. I can't export those figures now, so I state it as a first-hand, directional observation, and I'm glad to walk through specifics in conversation.</p>
+    </div>
+    <p class="summary">I treated the website as Atomic's primary acquisition surface, diagnosed why it wasn't working, did the research to understand the strategy, and shipped a full rebrand — new positioning, copy, UX, and a native lead-qualification flow that replaced a third-party tool. The funnel improved on first-hand data, with the hard numbers available in GA and the CRM.</p>
+  </section>
+
+</div>
+</body>
+</html>
