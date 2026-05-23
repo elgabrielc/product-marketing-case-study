@@ -72,11 +72,20 @@
   .summary{font-family:var(--serif); font-style:italic; font-size:1.15rem; line-height:1.5; color:var(--ink);
     border-left:3px solid var(--green); padding-left:1.1rem; margin:1.2rem 0 0;}
 
+  /* example images */
+  .examples{display:flex; flex-direction:column; gap:1.5rem; margin:.8rem 0 .4rem;}
+  .examples figure{margin:0;}
+  .examples img{width:100%; height:auto; display:block; border:1px solid var(--rule); border-radius:10px;
+    box-shadow:0 1px 3px rgba(21,32,27,.06);}
+  .examples figcaption{font-size:.85rem; color:var(--muted); margin-top:.55rem; line-height:1.45;}
+  .examples figcaption b{color:var(--ink); font-weight:600;}
+
   /* motion */
   @keyframes fadeUp{from{opacity:0; transform:translateY(12px)} to{opacity:1; transform:none}}
   header, section{animation:fadeUp .5s both;}
   section:nth-of-type(1){animation-delay:.05s} section:nth-of-type(2){animation-delay:.1s}
   section:nth-of-type(3){animation-delay:.15s} section:nth-of-type(4){animation-delay:.2s}
+  section:nth-of-type(5){animation-delay:.25s}
 
   @media (max-width:700px){
     body{font-size:16px;}
@@ -152,11 +161,18 @@
   </section>
 
   <section>
-    <h2>A note on rapid software development</h2>
-    <p>This page is itself a small example of how I work now. I designed it, wrote the copy and the code, and deployed it as a static site to GitHub Pages — start to finish in a single session, using AI-assisted development.</p>
-    <div class="callout">
-      <div class="h">Spec to shipped, in hours</div>
-      <p>Modern tooling collapses the distance between an idea and a working product. I can research a problem, build the surface, and put it in front of real users in hours rather than sprints — then harden what proves out. For a growth role, that means shipping and measuring experiments without waiting on an engineering queue.</p>
+    <h2>A note on rapid software development using AI</h2>
+    <p>This page itself illustrates how I work. I designed, built, and deployed it in a single session.</p>
+    <p>Additional examples:</p>
+    <div class="examples">
+      <figure>
+        <img src="assets/claude.png" alt="Claude Code running a multi-agent orchestration in the terminal to build and verify this project's research evidence base.">
+        <figcaption><b>Claude Code</b></figcaption>
+      </figure>
+      <figure>
+        <img src="assets/comet.png" alt="Comet, Perplexity's agentic browser, analyzing SimilarWeb traffic data for atomicvest.com while planning LinkedIn research.">
+        <figcaption><b>Comet (Perplexity)</b></figcaption>
+      </figure>
     </div>
   </section>
 
